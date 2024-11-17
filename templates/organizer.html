@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Organizer{% endblock %}
+
+{% block content %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Submit</button>
+    </form>
+
+    <div class="result">
+        {% if results %}
+            {% for r in results%}
+                <li>Name: {{r.name}}</li>
+                <li>Address: {{r.address}}</li>
+                <li>Contact Name: {{r.contact}}</li>
+                <li>Contact Email: {{r.email}}</li>
+                <li>Contact No: {{r.contact_no}}</li>
+            {% endfor %}
+        {% else %}
+            not found
+        {% endif %}
+    </div>
+{% endblock %}
